@@ -1,0 +1,11 @@
+customer_id,first_name,last_name,email,age,city,state,registration_date
+1,John,Doe,john.doe@email.com,32,New York,NY,2023-01-15
+2,Jane,Smith,jane.smith@email.com,28,Los Angeles,CA,2023-02-20
+3,Bob,Johnson,bob.johnson@email.com,45,Chicago,IL,2023-03-10
+4,Alice,Williams,alice.williams@email.com,35,Houston,TX,2023-04-05
+5,Charlie,Brown,charlie.brown@email.com,29,Phoenix,AZ,2023-05-12
+6,Diana,Davis,diana.davis@email.com,41,Philadelphia,PA,2023-06-18
+7,Eve,Miller,eve.miller@email.com,33,San Antonio,TX,2023-07-22
+8,Frank,Wilson,frank.wilson@email.com,38,San Diego,CA,2023-08-14
+9,Grace,Moore,grace.moore@email.com,26,Dallas,TX,2023-09-08
+10,Henry,Taylor,henry.taylor@email.com,44,San Jose,CA,2023-10-03

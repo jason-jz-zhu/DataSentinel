@@ -1,0 +1,109 @@
+[tool.poetry]
+name = "datasentinel"
+version = "0.1.0"
+description = "Enterprise-grade Data Quality framework for Spark, Snowflake, and S3"
+authors = ["DataSentinel Team"]
+readme = "README.md"
+packages = [{include = "dq_core"}]
+python = "^3.11"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pyspark = "^3.4.0"
+snowflake-connector-python = "^3.0.0"
+snowflake-sqlalchemy = "^1.4.0"
+boto3 = "^1.26.0"
+s3fs = "^2023.1.0"
+pydantic = "^2.0.0"
+pydantic-settings = "^2.0.0"
+fastapi = "^0.100.0"
+uvicorn = "^0.23.0"
+streamlit = "^1.25.0"
+whylogs = "^1.3.0"
+evidently = "^0.4.0"
+pandas = "^2.0.0"
+numpy = "^1.24.0"
+sqlalchemy = "^2.0.0"
+alembic = "^1.11.0"
+click = "^8.1.0"
+rich = "^13.0.0"
+pyyaml = "^6.0"
+prometheus-client = "^0.17.0"
+httpx = "^0.24.0"
+plotly = "^5.15.0"
+scipy = "^1.11.0"
+python-dotenv = "^1.0.0"
+croniter = "^1.4.0"
+jinja2 = "^3.1.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+pytest-asyncio = "^0.21.0"
+pytest-mock = "^3.11.0"
+ruff = "^0.1.0"
+mypy = "^1.5.0"
+black = "^23.7.0"
+pre-commit = "^3.3.0"
+ipykernel = "^6.25.0"
+jupyter = "^1.0.0"
+types-pyyaml = "^6.0.0"
+types-requests = "^2.31.0"
+
+[tool.poetry.scripts]
+dq = "dq_core.cli.main:cli"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = ["E501", "B008", "C901"]
+exclude = [".git", "__pycache__", "dist", "build", ".venv"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_any_unimported = false
+no_implicit_optional = true
+check_untyped_defs = true
+strict_optional = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --cov=dq_core --cov-report=term-missing"
+testpaths = ["tests"]
+python_files = "test_*.py"
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''

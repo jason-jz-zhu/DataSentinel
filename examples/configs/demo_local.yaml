@@ -1,0 +1,63 @@
+settings:
+  environment: local
+  debug: true
+  log_level: INFO
+  
+  database:
+    host: localhost
+    port: 5432
+    database: dqmetrics
+    username: dquser
+    password: dqpass
+  
+  s3:
+    endpoint_url: http://localhost:9000
+    access_key: minioadmin
+    secret_key: minioadmin
+    bucket: dq-data
+    use_ssl: false
+  
+  spark:
+    app_name: DataSentinel-Demo
+    master: local[*]
+    executor_memory: 1g
+    driver_memory: 1g
+  
+  score_weights:
+    accuracy: 0.4
+    reliability: 0.3
+    stewardship: 0.15
+    usability: 0.15
+
+datasets:
+  - name: customers
+    storage_type: local
+    location: examples/data/customers.csv
+    owner: data-team@company.com
+    sla_hours: 24
+    description: Customer master data
+    tags: [master-data, pii, critical]
+    checks:
+      - not_null_customer_id
+      - unique_customer_id
+      - valid_email_format
+      - customer_age_range
+    profiling_enabled: true
+    anomaly_detection_enabled: true
+    sampling_rate: 1.0
+  
+  - name: transactions
+    storage_type: local
+    location: examples/data/transactions.csv
+    owner: data-team@company.com
+    sla_hours: 4
+    description: Transaction events
+    tags: [events, financial, high-volume]
+    checks:
+      - not_null_transaction_id
+      - positive_amount
+      - valid_customer_ref
+      - transaction_date_range
+    profiling_enabled: true
+    anomaly_detection_enabled: true
+    sampling_rate: 0.1
